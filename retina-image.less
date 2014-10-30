@@ -1,0 +1,234 @@
+.retinaImageSub1(@name, @extension, @width, @height) {
+  .@{name} {
+    width: 100%;
+    max-width: (@width + 0px);
+    position: relative;
+  }
+
+  .@{name}:after {
+    padding-top: percentage(@height / @width);
+    display: block;
+    content: '';
+  }
+
+  .@{name} div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    max-height: 100%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-image: url("../img/@{name}/@{name}.@{extension}");
+  }
+}
+
+.retinaImage(@settings) {
+
+  // only one picture
+  & when (isnumber(extract(@settings, length(@settings)))) {
+      @name: extract(@settings, 1);
+      @extension: extract(@settings, 2);
+      @width: extract(@settings, 3);
+      @height: extract(@settings, 4);
+      .retinaImageSub1(@name, @extension, @width, @height);
+  }
+  // multiple pictures
+  & when not (isnumber(extract(@settings, length(@settings)))) {
+    @argCount: length(@settings);
+    .loop-args(@argCount) when (@argCount > 0) {
+      .loop-args(@argCount - 1);
+      @list: extract(@settings, @argCount);
+      @name: extract(@list, 1);
+      @extension: extract(@list, 2);
+      @width: extract(@list, 3);
+      @height: extract(@list, 4);
+      .retinaImageSub1(@name, @extension, @width, @height);
+    }
+    .loop-args(@argCount);
+  }
+
+  @media (min--moz-device-pixel-ratio: 0.75),
+  (-o-min-device-pixel-ratio: 3/4),
+  (-webkit-min-device-pixel-ratio: 0.75),
+  (min-device-pixel-ratio: 0.75),
+  (min-resolution: 0.75dppx) {
+    & when (isnumber(extract(@settings, length(@settings)))) {
+      @name: extract(@settings, 1);
+      @extension: extract(@settings, 2);
+      .@{name} div {
+        background-image: url("../img/@{name}/@{name}@0.75x.@{extension}");
+      }
+    }
+    & when not (isnumber(extract(@settings, length(@settings)))) {
+      .loop(length(@settings));
+      .loop(@i) when (@i > 0) {
+        .loop((@i - 1));
+        @list: extract(@settings, @i);
+        @name: extract(@list, 1);
+        @extension: extract(@list, 2);
+        .@{name} div {
+          background-image: url("../img/@{name}/@{name}@0.75x.@{extension}");
+        }
+      }
+    }
+  }
+
+  @media (min--moz-device-pixel-ratio: 1),
+  (-o-min-device-pixel-ratio: 1),
+  (-webkit-min-device-pixel-ratio: 1),
+  (min-device-pixel-ratio: 1),
+  (min-resolution: 1dppx) {
+    & when (isnumber(extract(@settings, length(@settings)))) {
+      @name: extract(@settings, 1);
+      @extension: extract(@settings, 2);
+      .@{name} div {
+        background-image: url("../img/@{name}/@{name}.@{extension}");
+      }
+    }
+    & when not (isnumber(extract(@settings, length(@settings)))) {
+      .loop(length(@settings));
+      .loop(@i) when (@i > 0) {
+        .loop((@i - 1));
+        @list: extract(@settings, @i);
+        @name: extract(@list, 1);
+        @extension: extract(@list, 2);
+        .@{name} div {
+          background-image: url("../img/@{name}/@{name}.@{extension}");
+        }
+      }
+    }
+  }
+
+  @media (min--moz-device-pixel-ratio: 1.01),
+  (-o-min-device-pixel-ratio: 101/100),
+  (-webkit-min-device-pixel-ratio: 1.01),
+  (min-device-pixel-ratio: 1.01),
+  (min-resolution: 1.01dppx) {
+    & when (isnumber(extract(@settings, length(@settings)))) {
+      @name: extract(@settings, 1);
+      @extension: extract(@settings, 2);
+      .@{name} div {
+        background-image: url("../img/@{name}/@{name}@1.3x.@{extension}");
+      }
+    }
+    & when not (isnumber(extract(@settings, length(@settings)))) {
+      .loop(length(@settings));
+      .loop(@i) when (@i > 0) {
+        .loop((@i - 1));
+        @list: extract(@settings, @i);
+        @name: extract(@list, 1);
+        @extension: extract(@list, 2);
+        .@{name} div {
+          background-image: url("../img/@{name}/@{name}@1.3x.@{extension}");
+        }
+      }
+    }
+  }
+
+  @media (min--moz-device-pixel-ratio: 1.31),
+  (-o-min-device-pixel-ratio: 131/100),
+  (-webkit-min-device-pixel-ratio: 1.31),
+  (min-device-pixel-ratio: 1.31),
+  (min-resolution: 1.31dppx) {
+    & when (isnumber(extract(@settings, length(@settings)))) {
+      @name: extract(@settings, 1);
+      @extension: extract(@settings, 2);
+      .@{name} div {
+        background-image: url("../img/@{name}/@{name}@1.5x.@{extension}");
+      }
+    }
+    & when not (isnumber(extract(@settings, length(@settings)))) {
+      .loop(length(@settings));
+      .loop(@i) when (@i > 0) {
+        .loop((@i - 1));
+        @list: extract(@settings, @i);
+        @name: extract(@list, 1);
+        @extension: extract(@list, 2);
+        .@{name} div {
+          background-image: url("../img/@{name}/@{name}@1.5x.@{extension}");
+        }
+      }
+    }
+  }
+
+  @media (min--moz-device-pixel-ratio: 1.51),
+  (-o-min-device-pixel-ratio: 1.51),
+  (-webkit-min-device-pixel-ratio: 1.51),
+  (min-device-pixel-ratio: 1.51),
+  (min-resolution: 1.51dppx) {
+    & when (isnumber(extract(@settings, length(@settings)))) {
+      @name: extract(@settings, 1);
+      @extension: extract(@settings, 2);
+      .@{name} div {
+        background-image: url("../img/@{name}/@{name}@2x.@{extension}");
+      }
+    }
+    & when not (isnumber(extract(@settings, length(@settings)))) {
+      .loop(length(@settings));
+      .loop(@i) when (@i > 0) {
+        .loop((@i - 1));
+        @list: extract(@settings, @i);
+        @name: extract(@list, 1);
+        @extension: extract(@list, 2);
+        .@{name} div {
+          background-image: url("../img/@{name}/@{name}@2x.@{extension}");
+        }
+      }
+    }
+  }
+
+  @media (min--moz-device-pixel-ratio: 2.01),
+  (-o-min-device-pixel-ratio: 2.01),
+  (-webkit-min-device-pixel-ratio: 2.01),
+  (min-device-pixel-ratio: 2.01),
+  (min-resolution: 2.01dppx) {
+    & when (isnumber(extract(@settings, length(@settings)))) {
+      @name: extract(@settings, 1);
+      @extension: extract(@settings, 2);
+      .@{name} div {
+        background-image: url("../img/@{name}/@{name}@3x.@{extension}");
+      }
+    }
+    & when not (isnumber(extract(@settings, length(@settings)))) {
+      .loop(length(@settings));
+      .loop(@i) when (@i > 0) {
+        .loop((@i - 1));
+        @list: extract(@settings, @i);
+        @name: extract(@list, 1);
+        @extension: extract(@list, 2);
+        .@{name} div {
+          background-image: url("../img/@{name}/@{name}@3x.@{extension}");
+        }
+      }
+    }
+  }
+
+  @media (min--moz-device-pixel-ratio: 3.01),
+  (-o-min-device-pixel-ratio: 3.01),
+  (-webkit-min-device-pixel-ratio: 3.01),
+  (min-device-pixel-ratio: 3.01),
+  (min-resolution: 3.01dppx) {
+    & when (isnumber(extract(@settings, length(@settings)))) {
+      @name: extract(@settings, 1);
+      @extension: extract(@settings, 2);
+      .@{name} div {
+        background-image: url("../img/@{name}/@{name}@4x.@{extension}");
+      }
+    }
+    & when not (isnumber(extract(@settings, length(@settings)))) {
+      .loop(length(@settings));
+      .loop(@i) when (@i > 0) {
+        .loop((@i - 1));
+        @list: extract(@settings, @i);
+        @name: extract(@list, 1);
+        @extension: extract(@list, 2);
+        .@{name} div {
+          background-image: url("../img/@{name}/@{name}@4x.@{extension}");
+        }
+      }
+    }
+  }
+
+}
