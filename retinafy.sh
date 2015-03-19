@@ -1,4 +1,4 @@
-### Retinafiy.sh ~ v0.11 ###
+### Retinafiy.sh ~ v0.12 ###
 ### (c) 2014 ColibriApps UG (haftungsbeschränkt) ###
 ### http://www.colibriapps.com ###
 
@@ -12,6 +12,13 @@ for fullfile in $(find original/* -name "*.png"); do
 
 	width=$(sips -g pixelWidth "$fullfile" | tail -n1 | cut -d" " -f4)
 	width=$(echo $width/4 | bc);
+
+    height=$(sips -g pixelHeight "$fullfile" | tail -n1 | cut -d" " -f4)
+    height=$(echo $height/4 | bc);
+
+    if [ "$height" -gt "$width" ]
+    then width=$height;
+    fi;
 
 	mkdir "converted"
 	mkdir "converted/$filename"
